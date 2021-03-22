@@ -5,9 +5,45 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #6a62d2;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.login{
+  width: 350px;
+	background: white;
+	margin: 80px auto;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.judul_login{
+  font-size: 20pt;
+  text-align: center;
+}
+
+.email input{
+  width: 100%;
+}
+
+.password input{
+  width: 100%;
+}
+
+.login button{
+  background: #746bde;
+	color: white;
+	font-size: 11pt;
+	width: 100%;
+	border: none;
+	border-radius: 3px;
+	padding: 10px 20px;
 }
