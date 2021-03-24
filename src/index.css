@@ -30,20 +30,28 @@ code {
   text-align: center;
 }
 
-.email input{
+input{
   width: 100%;
+  background-color: rgb(221, 221, 221);
+  border-color: transparent;
+  box-sizing: border-box;
+  height: 35px;
+  margin-bottom: 5px;
 }
 
-.password input{
-  width: 100%;
+input:focus{
+  outline: none;
 }
 
-.login button{
+button{
   background: #746bde;
 	color: white;
 	font-size: 11pt;
 	width: 100%;
 	border: none;
 	border-radius: 3px;
-	padding: 10px 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  margin-top: 5px;
 }

@@ -39,10 +39,10 @@ const App = () => {
                 <p className="judul_login">LOGIN</p>
                 <form onSubmit={e => onLogin(e)}>
                   <div className="email">
-                    <input type="text" name="username" onChange={e => setUsername(e.target.value)}></input>
+                    <input type="text" name="username" onChange={e => setUsername(e.target.value)} placeholder="Email"></input>
                   </div>
                   <div className="password">
-                    <input type="password" name="password" onChange={e => setPassword(e.target.value)}></input>
+                    <input type="password" name="password" onChange={e => setPassword(e.target.value)} placeholder="Password"></input>
                   </div>
                   <button>login</button>
                 </form>
