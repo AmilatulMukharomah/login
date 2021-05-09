@@ -1,59 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
-import { useState, useEffect } from 'react';
-import Content from './Content';
-import { BrowserRouter, Route, Redirect, Switch, useHistory, Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import Cart from './Cart'
+import Content from './Content'
+import Login from './Login'
+import Post from './Post'
+import CreatePost from './CreatePost'
+import UpdatePost from './UpdatePost'
 
-const App = () => {
-
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [isLoggedin, setIsloggedin] = useState(false)
-
-  useEffect(() => {
-    alert('Selamat Datang')
-    return () => {
-    }
-  }, [])
-
-  const onLogin = (e) => {
-    e.preventDefault()
-    if (username === 'admin' && password === 'admin') {
-      setIsloggedin(true)
-    } else {
-      alert('Salah')
-    }
-  }
+function App(props) {
+  const isLogin = props.loginData.isLogin
 
   return (
-    <>
-
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {isLoggedin ? <Content /> : <Redirect to="/login"></Redirect>}
-          </Route>
-          <Route exact path="/login">
-            {!isLoggedin ?
-              <div className="login">
-                <p className="judul_login">LOGIN</p>
-                <form onSubmit={e => onLogin(e)}>
-                  <div className="email">
-                    <input type="text" name="username" onChange={e => setUsername(e.target.value)} placeholder="Email"></input>
-                  </div>
-                  <div className="password">
-                    <input type="password" name="password" onChange={e => setPassword(e.target.value)} placeholder="Password"></input>
-                  </div>
-                  <button>login</button>
-                </form>
-              </div> :
-              <Redirect to="/" />
-            }
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </>
-  );
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/login">
+          {!isLogin ? <Login /> : <Redirect to="/cart"></Redirect>}
+        </Route>
+        <Route exact path="/">
+          {isLogin ? <Content /> : <Redirect to="/login" />}
+        </Route>
+        <Route exact path="/cart">
+          {isLogin ? <Cart /> : <Redirect to="/login" />}
+        </Route>
+        <Route exact path="/post">
+          {isLogin ? <Post /> : <Redirect to="/login" />}
+        </Route>
+        <Route exact path="/create">
+          {isLogin ? <CreatePost /> : <Redirect to="/login" />}
+        </Route>
+        <Route exact path="/update">
+          {isLogin ? <UpdatePost /> : <Redirect to="/login" />}
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+//ngambil state global dari store diubah ke props
+const mapStateToProps = state => {
+  return {
+    loginData: state.login,
+    cartData: state.cart
+  }
+}
+
+export default compose(
+  connect(mapStateToProps),
+)(App)
